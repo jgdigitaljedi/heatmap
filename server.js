@@ -21,6 +21,11 @@ app.get('/api/getheatmapdata', (req, res) => {
 	});
 });
 
+// serve the view (could be done with apache but this is a clean way to wire it in here)
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});
+
 var server = app.listen(3000, function () {
   var port = server.address().port;
   console.log('Server listening at port %s', port);

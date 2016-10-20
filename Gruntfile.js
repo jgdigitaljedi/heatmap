@@ -12,6 +12,12 @@ module.exports = function (grunt) {
 		'* @author <%= pkg.author %>\n' +
 		'*/\n',
 
+		open: {
+	      	server: {
+	        	url: 'http://localhost:<%= express.api.options.port %>'
+	      	}
+	    },
+
 		jshint: {
 			options: {
 				jshintrc: '.jshintrc',
@@ -29,7 +35,7 @@ module.exports = function (grunt) {
 			server: {
 				options: {
 					keepalive: true,
-					port: 3000,
+					port: 4000,
 					base: '.',
 					hostname: 'localhost',
 					debug: true,
@@ -189,6 +195,6 @@ module.exports = function (grunt) {
 	]);
 
 	// Development task(s).
-	grunt.registerTask('dev', ['jshint', 'injector:dev', 'express', 'less', 'concurrent']);
+	grunt.registerTask('dev', ['jshint', 'injector:dev', 'express', 'less', 'concurrent', 'open']);
 
 };
