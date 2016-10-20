@@ -1,0 +1,31 @@
+{
+  "name": "heatmap-challenge",
+  "version": "1.0.0",
+  "description": "hetmap widget creation with controls, modularity, and implimentation",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "grunt": "^1.0.1",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-cli": "^1.2.0",
+    "grunt-concurrent": "^2.3.1",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgdigitaljedi/heatmap.git"
+  },
+  "author": "Joey Gauthier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jgdigitaljedi/heatmap/issues"
+  },
+  "homepage": "https://github.com/jgdigitaljedi/heatmap#readme"
+}

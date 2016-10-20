@@ -1,0 +1,20 @@
+{
+  "name": "heatmap-challenge",
+  "description": "hetmap widget creation with controls, modularity, and implimentation",
+  "main": "index.js",
+  "authors": [
+    "Joey Gauthier"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jgdigitaljedi/heatmap",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}
