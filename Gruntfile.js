@@ -29,7 +29,7 @@ module.exports = function (grunt) {
 			server: {
 				options: {
 					keepalive: true,
-					port: 4000,
+					port: 3000,
 					base: '.',
 					hostname: 'localhost',
 					debug: true,
@@ -56,7 +56,7 @@ module.exports = function (grunt) {
 				}
 			},
 			styles: {
-		        files: ['app/assets/less/*.less'],
+		        files: ['less/*.less'],
 		        tasks: ['less'],
 		        options: {
 		        	spawn: false,
@@ -64,14 +64,14 @@ module.exports = function (grunt) {
 		        }
 		    },
 		    html: {
-		    	files: ['app/modules/**/*.html'],
+		    	files: ['index.html'],
 		    	options: {
 		    		spawn: false,
 		    		livereload: true
 		    	}
 		    },
 		    utility: {
-		    	files: ['Gruntfile.js', 'index.html'],
+		    	files: ['Gruntfile.js'],
 		    	options: {
 		    		spawn: false,
 		    		livereload: true
@@ -163,7 +163,7 @@ module.exports = function (grunt) {
 			api: {
 				options: {
 					script: 'server.js',
-					port: 8080
+					port: 3000
 				}
 			}
 		}
@@ -189,6 +189,6 @@ module.exports = function (grunt) {
 	]);
 
 	// Development task(s).
-	grunt.registerTask('dev', ['jshint', 'injector:dev', 'copy', 'express', 'less', 'concurrent']);
+	grunt.registerTask('dev', ['jshint', 'injector:dev', 'express', 'less', 'concurrent']);
 
 };

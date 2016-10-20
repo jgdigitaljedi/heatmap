@@ -1,0 +1,37 @@
+{
+	"esnext": true,
+	"bitwise": true,
+	"camelcase": false,
+	"curly": false,
+	"devel": true,
+	"eqeqeq": true,
+	"immed": true,
+	"latedef": false,
+	"newcap": false,
+	"noarg": true,
+	"quotmark": false,
+	"undef": false,
+	"unused": false,
+	"strict": false,
+	"trailing": false,
+	"white": false,
+	"-W099": true,
+	"globals": {
+		"browser": false,
+		"describe": false,
+		"beforeEach": false,
+		"inject": false,
+		"expect": false,
+		"it": false,
+		"angular": false,
+		"window": false,
+		"app": false,
+		"document": false,
+		"alert": false,
+		"jasmine": false,
+		"jquery": false,
+		"mocha": true,
+		"node": true
+	}
+
+}
