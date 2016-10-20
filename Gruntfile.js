@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 				src: 'Gruntfile.js'
 			},
 			app: {
-				src: ['js/*.js']
+				src: ['app/*.js', 'app/**/*.js']
 			}
 		},
 
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
 				}
 			},
 			styles: {
-		        files: ['less/*.less'],
+		        files: ['app/less/*.less'],
 		        tasks: ['less'],
 		        options: {
 		        	spawn: false,
@@ -70,7 +70,7 @@ module.exports = function (grunt) {
 		        }
 		    },
 		    html: {
-		    	files: ['index.html'],
+		    	files: ['index.html', 'app/views/*.html'],
 		    	options: {
 		    		spawn: false,
 		    		livereload: true
@@ -89,7 +89,7 @@ module.exports = function (grunt) {
 		less: {
 		  development: {
 		    options: {
-		      paths: ['less/']
+		      paths: ['app/less/']
 		    },
 		    files: {
 		      'result.css': 'less/main.less'
@@ -97,13 +97,13 @@ module.exports = function (grunt) {
 		  },
 		  production: {
 		    options: {
-		      paths: ['less/'],
+		      paths: ['app/less/'],
 		      plugins: [
 		        new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]})
 		      ]
 		    },
 		    files: {
-		      'result.css': 'less/main.less'
+		      'result.css': 'app/less/main.less'
 		    }
 		  }
 		},
@@ -111,23 +111,30 @@ module.exports = function (grunt) {
 
 		injector: {
 			options: {},
-			dev: {
+			devJs: {
 				files: {
 					'index.html': [
 						'bower.json',
-						'js/*.js',
-						'bower_components/jquery/dist/jquery.min.js'
+						'app/*.js',
+						'app/**/*.js'
+					]
+				},
+				tasks: ['injector:js']
+			},
+			devCss: {
+				files: {
+					'index.html': [
+						'result.css'
 					]
 				}
 			},
 			production: {
 				files: {
 					'index.html': [
-						'app/assets/css/**/*.css',
-						'app/assets/js/*.js'
+						'dist/concatted.js'
 					]
 
-				}
+				},tasks: ['injector:css']
 			}
 		},
 
@@ -137,7 +144,7 @@ module.exports = function (grunt) {
 					mangle: true
 				},
 				files: {
-					'app/assets/js/<%= pkg.name %>-appbundle.js': 'min-safe/application.js'
+					'dist/<%= pkg.name %>-appbundle.js': 'min-safe/application.js'
 				}
 			}
 		},
@@ -145,9 +152,7 @@ module.exports = function (grunt) {
 		cssmin: {
 			target: {
 				files: {
-					'app/assets/css/result.css': ['app/assets/css/result.css'],
-					'app/assets/css/angular-material/angular-material.css': ['app/assets/css/angular-material/angular-material.css'],
-					'app/assets/css/angular-material-icons/angular-material-icons.css': ['app/assets/css/angular-material-icons/angular-material-icons.css']
+					'result.css': ['result.css']
 				}
 			}
 		},
@@ -195,6 +200,6 @@ module.exports = function (grunt) {
 	]);
 
 	// Development task(s).
-	grunt.registerTask('dev', ['jshint', 'injector:dev', 'express', 'less', 'concurrent', 'open']);
+	grunt.registerTask('dev', ['jshint', 'injector:devJs', 'injector:devCss', 'express', 'less', 'concurrent', 'open']);
 
 };

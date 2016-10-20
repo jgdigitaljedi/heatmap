@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt" ng-app="home-control">
+<html lang="en" ng-app="heatMap">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,15 +9,23 @@
 		<meta name="author" content="Joey Gauthier" />
 		<meta name="keywords" content="vizualization" />
 		<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=yes" />
+		<!-- injector:css -->
+		<link rel="stylesheet" href="/result.css">
+		<!-- endinjector -->
 
-	    <link rel="stylesheet" href="result.css">
 	</head>
-	<body>
-	<h1>This is loading</h1>
+	<body ng-app="heatMap" ng-controller="MainCtrl">
+		<h1>This is index</h1>
 
-	<!-- injector:js -->
-	<script src="/bower_components/jquery/dist/jquery.js"></script>
-	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
-	<!-- endinjector -->
+		<div ng-view="" ng-controller="MainCtrl"></div>
+
+		<!-- injector:js -->
+		<script src="/bower_components/angular/angular.js"></script>
+		<script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+		<script src="/bower_components/moment/moment.js"></script>
+		<script src="/app/app.js"></script>
+		<script src="/app/routes.js"></script>
+		<script src="/app/controllers/mainCtrl.js"></script>
+		<!-- endinjector -->
 	</body>
 </html>
