@@ -5,7 +5,7 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 
-app.get('/api/getHeatmapData', () => {
+app.get('/api/getheatmapdata', (req, res) => {
 	fs.readFile('HeatMapData-1.json', 'utf-8', function (err, data) {
 		var returnData = {},
 			status;
@@ -21,4 +21,9 @@ app.get('/api/getHeatmapData', () => {
 	});
 });
 
-app.listen(3000);
+var server = app.listen(3000, function () {
+  var port = server.address().port;
+  console.log('Server listening at port %s', port);
+});
+
+module.exports = server;
