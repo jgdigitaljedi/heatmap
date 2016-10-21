@@ -48,9 +48,7 @@ angular.module('heatMap').directive('rawHeatmap', [
 							console.log('before cleaning', angular.copy($scope.hmDataSource));
 							for (var i = 0; i < expectedLength; i++) {
 								if (key === 1) console.log($scope.hmDataSource[key].data[i].hour);
-								// console.log('i is ' + i + ' and counter is ' + counter);
 								if (counter < dataLen && i === $scope.hmDataSource[key].data[counter].hour) {
-									console.warn($scope.hmDataSource[key].data[counter].hour);
 									cleanedData.push($scope.hmDataSource[key].data[counter]);
 									counter++;
 								} else {
