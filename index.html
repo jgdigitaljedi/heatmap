@@ -15,10 +15,10 @@
 		<!-- endinjector -->
 
 	</head>
-	<body ng-app="heatMap" ng-controller="MainCtrl">
+	<body ng-app="heatMap">
 		<!-- <h1>This is index</h1> -->
 
-		<div ui-view ng-controller="MainCtrl" md-theme="default"></div>
+		<div ui-view md-theme="default"></div>
 
 		<!-- injector:js -->
 		<script src="/bower_components/angular/angular.js"></script>
@@ -31,6 +31,8 @@
 		<script src="/app/app.js"></script>
 		<script src="/app/routes.js"></script>
 		<script src="/app/controllers/mainCtrl.js"></script>
+		<script src="/app/directives/rawHeatmapDirective.js"></script>
+		<script src="/app/services/webService.js"></script>
 		<!-- endinjector -->
 	</body>
 </html>
