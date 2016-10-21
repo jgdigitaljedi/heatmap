@@ -1,4 +1,4 @@
-'use strict';
+'use strict()';
 
 angular.module('heatMap')
   	.config(function ($stateProvider) {
@@ -7,7 +7,7 @@ angular.module('heatMap')
         		url: '/',
         		templateUrl: 'app/views/mainView.html',
         		controller: 'MainCtrl',
-        		controllerAs: 'mainVm'
+        		controllerAs: 'vm'
       		});
 
     });

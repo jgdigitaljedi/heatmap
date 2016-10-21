@@ -11,18 +11,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=yes" />
 		<!-- injector:css -->
 		<link rel="stylesheet" href="/result.css">
+		<link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css">
 		<!-- endinjector -->
 
 	</head>
 	<body ng-app="heatMap" ng-controller="MainCtrl">
-		<h1>This is index</h1>
+		<!-- <h1>This is index</h1> -->
 
-		<div ng-view="" ng-controller="MainCtrl"></div>
+		<div ui-view ng-controller="MainCtrl" md-theme="default"></div>
 
 		<!-- injector:js -->
 		<script src="/bower_components/angular/angular.js"></script>
 		<script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 		<script src="/bower_components/moment/moment.js"></script>
+		<script src="/bower_components/angular-animate/angular-animate.js"></script>
+		<script src="/bower_components/angular-aria/angular-aria.js"></script>
+		<script src="/bower_components/angular-messages/angular-messages.js"></script>
+		<script src="/bower_components/angular-material/angular-material.js"></script>
 		<script src="/app/app.js"></script>
 		<script src="/app/routes.js"></script>
 		<script src="/app/controllers/mainCtrl.js"></script>

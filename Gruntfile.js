@@ -124,7 +124,8 @@ module.exports = function (grunt) {
 			devCss: {
 				files: {
 					'index.html': [
-						'result.css'
+						'result.css',
+						'bower_components/angular-material/angular-material.min.css'
 					]
 				}
 			},
