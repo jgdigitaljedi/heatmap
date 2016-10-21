@@ -1,0 +1,8 @@
+<div class="hm-container">
+	<div ng-repeat="(key, value) in hmDataSource" class="hm-row">
+		<div class="row-label">{{value.rowLabel}}</div>
+		<div class="hm-square" ng-repeat="index in value.data" ng-style="{'background-color': index.color}">
+		<!-- {{index.xLabel}} -->
+		</div>
+	</div>
+</div>

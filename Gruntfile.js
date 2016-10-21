@@ -62,7 +62,7 @@ module.exports = function (grunt) {
 				}
 			},
 			styles: {
-		        files: ['app/less/*.less'],
+		        files: ['app/less/*.less', 'app/directives/*.less'],
 		        tasks: ['less'],
 		        options: {
 		        	spawn: false,
@@ -70,7 +70,7 @@ module.exports = function (grunt) {
 		        }
 		    },
 		    html: {
-		    	files: ['index.html', 'app/views/*.html'],
+		    	files: ['index.html', 'app/views/*.html', 'app/directives/*.html'],
 		    	options: {
 		    		spawn: false,
 		    		livereload: true
