@@ -20,14 +20,11 @@ angular.module('heatMap').directive('rawHeatmap', [
 				}
 
 				function createHeatmap (data) {
-					console.log('data', data);
 					var expectedLength = $scope.axisLabels.xAxis.length,
 						durationArray = Array.apply(null, {length: expectedLength}).map(Number.call, Number);
 					if (data && data.length) {
 						data.forEach(function (item, index) {
 							var value = item.data['Site Incident Heat Severity Map (lv12)'][0].value;
-							// console.log('value', value);
-							// console.log('color', associateColor(value));
 							if (!$scope.hmDataSource.hasOwnProperty(item.index.dowId)) {
 								$scope.hmDataSource[item.index.dowId] = {rowLabel: $scope.axisLabels.yAxis[item.index.dowId - 1], data: []};
 							}
@@ -39,13 +36,21 @@ angular.module('heatMap').directive('rawHeatmap', [
 							});
 
 						});
-						console.log('before cleaning', angular.copy($scope.hmDataSource));
 						for (var key in $scope.hmDataSource) {
 							var cleanedData = [],
 								dataLen = $scope.hmDataSource[key].data.length,
 								counter = 0;
+								$scope.hmDataSource[key].data = $scope.hmDataSource[key].data.sort(
+									function (a, b) {
+										return a.hour - b.hour;
+									}
+								);
+							console.log('before cleaning', angular.copy($scope.hmDataSource));
 							for (var i = 0; i < expectedLength; i++) {
-								if (i < dataLen && i === $scope.hmDataSource[key].data[counter].hour) {
+								if (key === 1) console.log($scope.hmDataSource[key].data[i].hour);
+								// console.log('i is ' + i + ' and counter is ' + counter);
+								if (counter < dataLen && i === $scope.hmDataSource[key].data[counter].hour) {
+									console.warn($scope.hmDataSource[key].data[counter].hour);
 									cleanedData.push($scope.hmDataSource[key].data[counter]);
 									counter++;
 								} else {
@@ -58,11 +63,6 @@ angular.module('heatMap').directive('rawHeatmap', [
 									});
 								}
 							}
-							cleanedData = cleanedData.sort(
-								function (a, b) {
-									return a.hour - b.hour;
-								}
-							);
 							$scope.hmDataSource[key].data = cleanedData;
 						}
 						console.log('end result', $scope.hmDataSource);					
