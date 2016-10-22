@@ -92,7 +92,7 @@ module.exports = function (grunt) {
 		      paths: ['app/less/']
 		    },
 		    files: {
-		      'result.css': 'less/main.less'
+		      'result.css': 'app/less/main.less'
 		    }
 		  },
 		  production: {

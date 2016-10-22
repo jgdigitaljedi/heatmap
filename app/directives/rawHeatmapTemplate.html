@@ -1,10 +1,10 @@
 <div class="hm-container">
 	<div ng-repeat="(key, value) in hmDataSource" class="hm-row">
-		<span class="row-label">{{value.rowLabel}}</span>
-		<span class="hm-square" ng-repeat="index in value.data" ng-style="{'background-color': index.color}">
-		<!-- {{index.xLabel}} -->
-		</span>
+		<div class="row-label">{{value.rowLabel}}</div>
+		<div class="hm-square" ng-repeat="index in value.data" ng-style="{'background-color': index.color}">
+		<!-- {{index.color}} -->
+		</div>
 	</div>
-	<span style="width: 60px; height: 25px; display: inline-block;"></span>
-	<span class="hm-footer" ng-repeat="label in axisLabels.xAxis">{{label}}</span>
+	<div style="width: 90px; height: 25px; display: inline-block;"></div>
+	<div class="hm-footer" ng-repeat="label in axisLabels.xAxis">{{label}}</div>
 </div>

@@ -2,9 +2,9 @@
 
 angular.module('heatMap').factory('WebService', ['$http', '$q',
 	function ($http, $q) {
-		function getHeatmapData () {
+		function getHeatmapData (random) {
 			var def = $q.defer();
-			$http.get('http://localhost:3000/api/getheatmapdata')
+			$http.get('http://localhost:3000/api/getheatmapdata/' + random)
 				.success(function (data, status, headers, config) {
 					if (!data.error && data.data && data.data.result) {
 						def.resolve(data.data.result);

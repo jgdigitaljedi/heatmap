@@ -1,14 +1,21 @@
 .hm-container {
+	background-color: #f1f1f1;
+	padding: 16px;
+	.BoxShadowHelper(2);
+
 
 	.hm-row {
 		padding: 0;
 		margin: 0;
 		height: 25px;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		algin-items: center;
 
 		.row-label {
 			font-weight: bold;
-			width: 60px;
-			display: inline-block;
+			width: 90px;
 			padding-bottom: 0;
 			vertical-align: top;
 			padding-top: 6px;
@@ -17,15 +24,15 @@
 		.hm-square {
 			width: 30px;
 			height: 30px;
-			border: 1px solid black;
-			display: inline-block;
+			// border: 1px solid black;
 		}
 	}
 
 	.hm-footer {
-		width: 32px;
+		width: 30px;
 		height: 30px;
 		text-align: center;
 		display: inline-block;
+		text-align: center;
 	}
 }

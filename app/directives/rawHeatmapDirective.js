@@ -16,7 +16,13 @@ angular.module('heatMap').directive('rawHeatmap', [
 				var colorArr = ['#01579B', '#006064', '#004D40', '#1B5E20', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#B71C1C'];
 
 				function associateColor (value) {
-					return parseInt(value / 68);
+					var index;
+					if (value >= 680) {
+						index = 9;
+					} else {
+						index = parseInt(value / 68);
+					}
+					return index;
 				}
 
 				function createHeatmap (data) {
@@ -40,12 +46,12 @@ angular.module('heatMap').directive('rawHeatmap', [
 							var cleanedData = [],
 								dataLen = $scope.hmDataSource[key].data.length,
 								counter = 0;
-								$scope.hmDataSource[key].data = $scope.hmDataSource[key].data.sort(
-									function (a, b) {
-										return a.hour - b.hour;
-									}
-								);
-							console.log('before cleaning', angular.copy($scope.hmDataSource));
+							$scope.hmDataSource[key].data = $scope.hmDataSource[key].data.sort(
+								function (a, b) {
+									return a.hour - b.hour;
+								}
+							);
+							// console.log('before cleaning', angular.copy($scope.hmDataSource));
 							for (var i = 0; i < expectedLength; i++) {
 								if (key === 1) console.log($scope.hmDataSource[key].data[i].hour);
 								if (counter < dataLen && i === $scope.hmDataSource[key].data[counter].hour) {
@@ -63,7 +69,7 @@ angular.module('heatMap').directive('rawHeatmap', [
 							}
 							$scope.hmDataSource[key].data = cleanedData;
 						}
-						console.log('end result', $scope.hmDataSource);					
+						// console.log('end result', $scope.hmDataSource);					
 					}
 				}
 

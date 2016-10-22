@@ -12,14 +12,24 @@ app.all('*', function(req, res, next) {
   	next();
 });
 
-app.get('/api/getheatmapdata', (req, res) => {
+app.get('/api/getheatmapdata/:random', (req, res) => {
 	fs.readFile('HeatMapData-1.json', 'utf-8', function (err, data) {
 		var returnData = {},
 			status;
 		// if (err.code !== 'ENOENT') throw err;
 		if (!err) {
-			returnData = {error: false, data: JSON.parse(data)};
-			status = 200;
+			if (JSON.parse(req.params.random)) {
+				data = JSON.parse(data);
+				data.result.forEach((item, index) => {
+					data.result[index].data['Site Incident Heat Severity Map (lv12)'][0].value = Math.floor(Math.random() * 1000 + 1);
+					// item.data['Site Incident Heat Severity Map (lv12)'].value = Math.floor(Math.random() * 1000 + 1);
+				});
+				returnData = {error: false, data: data};
+				status = 200;				
+			} else {
+				returnData = {error: false, data: JSON.parse(data)};
+				status = 200;				
+			}
 		} else {
 			returnData = {error: true, data: err};
 			status = 500;
