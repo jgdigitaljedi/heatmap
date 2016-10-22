@@ -44,4 +44,7 @@ npm test
 ### Todos
 
  - Write More Tests
- - Pretty Much Everything Except ENV Setup
+ - Write slider directive and use on widget
+ - Make more responsive
+ - Stress tests it (need to verify everything is 100% accurate)
+ - Move data specific logic to controller (wrote in directive before I realized it what I was doing)
