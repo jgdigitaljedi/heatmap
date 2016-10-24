@@ -1,8 +1,8 @@
-# HeatMap
+# HeatMap Widget and Demo
 
-HeatMap is a little heatmap visualization I put together for Angular. This project has a server.js for the sake of demonstrating it by getting a data set from a data call and uses Mocha and supertest to test the endpoint.
+This is a little heatmap visualization I put together for Angular. This project has a server.js for the sake of demonstrating it by getting a data set from a data call and uses Mocha and supertest to test the endpoint.
 
-My thought process was to get the widget working with nothing but Angular first. Then I thought I could add the slider functionality with a framework just to have the functionality, add a pop-up to the heatmap squares on hover to show the actual value, then circle back and create my own slider widget if I had the time.
+My thought process was to get the widget working with nothing but Angular first. Then I thought I could add the slider functionality with a framework just to have the functionality, add a pop-up to the heatmap squares on hover to show the actual value, get the build process working, then circle back and create my own slider widget and create a canvas version if I had the time (not likely due to app launch at work and being on call and on edge 24/7).
 
 ### Features
  - material design
@@ -24,10 +24,10 @@ While HeatMap is just JavaScript/Angular, I used a few libraries for the server,
 
 ### Installation
 
-HeatMap requires [Node.js](https://nodejs.org/) v4+ to run.
+This requires [Node.js](https://nodejs.org/) v4+ to demonstrate/build.
 Install global dependencies:
 ```sh
-$ npm install grunt bower mocha -g
+$ npm install grunt-cli bower mocha -g
 ```
 
 Clone it, install the dependencies and devDependencies, and start the server.
@@ -39,13 +39,12 @@ $ bower install
 $ grunt dev
 ```
 
-For production environments...(haven't actually tested this yet, on todo)
+For production environments. Using this option puts views into minified template cache; annotates, concats, and minifies JS; and compiles, prefixes, and minifies less. It then serves the build in the same way as the 'grunt dev' process. In theory (haven't tested), you would be able to copy the "dist" folder along with the bower and node modules folder, the index.html file, and the result.css file to an Apache config and this demo would work if there was an endpoint to hit to get the data.
 
 ```sh
 $ cd heatmap
 $ npm install
 $ bower install
-$ NODE_ENV=production
 $ grunt build
 ```
 

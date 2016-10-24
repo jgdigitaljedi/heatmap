@@ -132,7 +132,7 @@ module.exports = function (grunt) {
 			production: {
 				files: {
 					'index.html': [
-					'bower.json',
+						'bower.json',
 						'dist/*.js'
 					]
 
@@ -177,7 +177,17 @@ module.exports = function (grunt) {
 				options: {
 					module: 'heatMap',
 					root: 'app/',
-					standAlone: false
+					standAlone: false,
+					htmlmin: {
+					  collapseBooleanAttributes:      true,
+					  collapseWhitespace:             true,
+					  removeAttributeQuotes:          true,
+					  removeComments:                 true,
+					  removeEmptyAttributes:          true,
+					  removeRedundantAttributes:      true,
+					  removeScriptTypeAttributes:     true,
+					  removeStyleLinkTypeAttributes:  true
+					}
 				}
 			}
 		},
@@ -204,13 +214,14 @@ module.exports = function (grunt) {
 					{
 						expand: true,
 						cwd: 'bower_components/',
-						src: '*.min.js',
+						src: '**/**.min.js',
 						dest: 'dist/',
 						flatten: true
 					},
 					{
 						expand: true,
-						src: 'bower_components/release/*.min.js',
+						cwd: 'bower_components/angular-ui-router/release/',
+						src: '**.min.js',
 						dest: 'dist/',
 						flatten: true
 					}
@@ -239,7 +250,6 @@ module.exports = function (grunt) {
 		"jshint",
 		// "copy",
 		"less",
-		// "exec",
 		"ngAnnotate",
 		// "concat",
 		"uglify",
@@ -249,7 +259,6 @@ module.exports = function (grunt) {
 		"ngtemplates",
 		"express",
 		"concurrent",
-		// "clean"
 	]);
 
 	// Development task(s).
