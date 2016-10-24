@@ -79,6 +79,13 @@ angular.module('heatMap').directive('rawHeatmap', [
 				}
 
 				$scope.showPopover = function (e, index) {
+					console.log('e', e);
+					$scope.style = {
+						'left': e.pageX - 40 + 'px',
+						'top': e.pageY - 40 + 'px'
+					};
+					$scope.left = e.pageX + 'px';
+					$scope.top = e.pageY - 20 + 'px';
 					$scope.showWhich = index.id;
 				};
 

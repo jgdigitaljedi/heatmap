@@ -9,8 +9,8 @@
 			ng-style="{'background-color': index.color}" ng-class="{'gray-square': severity > index.colorIndex}" 
 			ng-mouseover="showPopover($event, index)" ng-mouseleave="hidePopover()">
 		<!-- {{index.color}} -->
-			<div ng-show="showWhich === index.id" class="hm-popup">
-			 	{{index.value}}
+			<div ng-show="showWhich === index.id" class="hm-popup" ng-style="style">
+			 	value: {{index.value}}
 			</div>
 		</div>
 	</div>

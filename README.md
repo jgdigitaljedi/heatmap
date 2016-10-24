@@ -1,8 +1,15 @@
 # HeatMap
 
-HeatMap is a little heatmap visualization I put together for Angular. This project has a server.js for the sake of auto-task running and uses Mocha and supertest to test the endpoint.
+HeatMap is a little heatmap visualization I put together for Angular. This project has a server.js for the sake of demonstrating it by getting a data set from a data call and uses Mocha and supertest to test the endpoint.
 
-My thought process was to get the widget working with nothing but Angular first. Then I thought I could add the slider functionality with a framework just to have the functionality, add a pop-up to the heatmap squares on hover to show the actual value, then circle back and create my own slider widget if I had the time. 
+My thought process was to get the widget working with nothing but Angular first. Then I thought I could add the slider functionality with a framework just to have the functionality, add a pop-up to the heatmap squares on hover to show the actual value, then circle back and create my own slider widget if I had the time.
+
+### Features
+ - material design
+ - hover on a square to see value in a tooltip
+ - slider to show and hide squares of different severity
+ - reasonably responsive
+ - simple to plugin to project (just a directive controller and template)
 
 ### Tech
 
@@ -52,5 +59,4 @@ npm test
  - Write More Tests
  - Test/Debug/Rewrite production build (setup basics but haven't tried it yet)
  - Make more responsive
- - Stress tests it (need to verify everything is 100% accurate)
- - Move data specific logic to controller (wrote in directive before I realized it what I was doing)
+ - Move data specific logic to controller (wrote in directive before I realized it)
