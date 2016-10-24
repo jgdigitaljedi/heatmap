@@ -158,6 +158,15 @@ module.exports = function (grunt) {
 			}
 		},
 
+		ngAnnotate: {
+	        options: {
+	            singleQuotes: true,
+	        },
+	        prod: {
+	        	files: []
+	        }
+	    },
+
 		// copy: {
 		// 	main: {
 		// 		files: [
@@ -193,6 +202,7 @@ module.exports = function (grunt) {
 		"copy",
 		"less",
 		"exec",
+		"ngAnnotate",
 		"uglify",
 		"cssmin",
 		"injector:production",

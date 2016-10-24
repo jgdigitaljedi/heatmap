@@ -60,3 +60,4 @@ npm test
  - Test/Debug/Rewrite production build (setup basics but haven't tried it yet)
  - Make more responsive
  - Move data specific logic to controller (wrote in directive before I realized it)
+ - Make canvas version
