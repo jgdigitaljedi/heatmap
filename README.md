@@ -8,7 +8,7 @@ My thought process was to get the widget working with nothing but Angular first.
  - material design
  - hover on a square to see value in a tooltip
  - slider to show and hide squares of different severity
- - reasonably responsive
+ - reasonably responsive (still needs some work)
  - simple to plugin to project (just a directive controller and template)
 
 ### Tech
