@@ -56,7 +56,5 @@ npm test
 ### Todos
 
  - Write More Tests
- - Test/Debug/Rewrite production build (setup basics but haven't tried it yet)
  - Make more responsive
- - Move data specific logic to controller (wrote in directive before I realized it)
- - Make canvas version
+ - Make canvas version (thought prototyping as a view was a good idea until I started paying attention to responsiveness which didn't leave me much time)
