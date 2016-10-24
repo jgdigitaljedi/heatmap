@@ -4,7 +4,6 @@ angular.module('heatMap').directive('rawHeatmap', [
 	function () {
 		return {
 			restrict: 'AE',
-			// replace: true,
 			transclude: true,
 			scope: {
 				hmData: '=',
@@ -15,6 +14,7 @@ angular.module('heatMap').directive('rawHeatmap', [
 				$scope.severity = 0;
 				$scope.hmDataSource = {};
 				var colorArr = ['#01579B', '#006064', '#004D40', '#1B5E20', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#B71C1C'];
+				var uniqueId = 0;
 
 				function associateColor (value) {
 					var index;
@@ -56,25 +56,35 @@ angular.module('heatMap').directive('rawHeatmap', [
 							);
 							// console.log('before cleaning', angular.copy($scope.hmDataSource));
 							for (var i = 0; i < expectedLength; i++) {
-								if (key === 1) console.log($scope.hmDataSource[key].data[i].hour);
 								if (counter < dataLen && i === $scope.hmDataSource[key].data[counter].hour) {
+									$scope.hmDataSource[key].data[counter].id = uniqueId;
 									cleanedData.push($scope.hmDataSource[key].data[counter]);
+									uniqueId++;
 									counter++;
 								} else {
 									cleanedData.push({
-										// color: colorArr[0],
-										color: '#333',
+										color: colorArr[0],
 										hour: i,
 										value: 0,
 										xLabel: $scope.axisLabels.xAxis[i],
-										colorIndex: 0
+										colorIndex: 0,
+										id: uniqueId
 									});
+									uniqueId++;
 								}
 							}
 							$scope.hmDataSource[key].data = cleanedData;
 						}				
 					}
 				}
+
+				$scope.showPopover = function (e, index) {
+					$scope.showWhich = index.id;
+				};
+
+				$scope.hidePopover = function (id) {
+					$scope.showWhich = null;
+				};
 
 				$scope.$watch('hmData', function () {
 					createHeatmap($scope.hmData);
