@@ -18,6 +18,10 @@ While HeatMap is just JavaScript/Angular, I used a few libraries for the server,
 ### Installation
 
 HeatMap requires [Node.js](https://nodejs.org/) v4+ to run.
+Install global dependencies:
+```sh
+$ npm install grunt bower mocha -g
+```
 
 Clone it, install the dependencies and devDependencies, and start the server.
 
@@ -47,7 +51,6 @@ npm test
 
  - Write More Tests
  - Test/Debug/Rewrite production build (setup basics but haven't tried it yet)
- - Write slider directive and use on widget (currently using framework slider just to get functionality in)
  - Make more responsive
  - Stress tests it (need to verify everything is 100% accurate)
  - Move data specific logic to controller (wrote in directive before I realized it what I was doing)
