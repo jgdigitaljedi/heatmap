@@ -39,7 +39,7 @@ $ bower install
 $ grunt dev
 ```
 
-For production environments. Using this option puts views into minified template cache; annotates, concats, and minifies JS; and compiles, prefixes, and minifies less. It then serves the build in the same way as the 'grunt dev' process. In theory (haven't tested), you would be able to copy the "dist" folder along with the bower and node modules folder, the index.html file, and the result.css file to an Apache config and this demo would work if there was an endpoint to hit to get the data.
+For production environments. Using this option puts views into minified template cache; annotates, concats, and minifies JS; and compiles, prefixes, and minifies less. It then serves the build in the same way as the 'grunt dev' process. In theory (haven't tested), you would be able to copy the "dist" folder along with the bower_components folder, the index.html file, and the result.css file to an Apache config and this demo would work if there was an endpoint to hit to get the data. The node modules were only for developing, building, and testing.
 
 ```sh
 $ cd heatmap

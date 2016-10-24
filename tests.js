@@ -17,7 +17,7 @@ describe('api reads file and returns JSON', () => {
 
 	it('hits the end point and gets a 200', (done) => {
 		request(server)
-			.get('/api/getheatmapdata')
+			.get('/api/getheatmapdata/false')
 			.expect(200)
 			.end((err, res) => {
 				if (err) return done(err);
@@ -27,7 +27,7 @@ describe('api reads file and returns JSON', () => {
 
 	it('hits the end point, gets back the JSON object, and return has correct value', (done) => {
 		request(server)
-			.get('/api/getheatmapdata')
+			.get('/api/getheatmapdata/false')
 			.expect(200)
 			.expect((res) => {
 				res.body.data.result.length.should.be.above(1);

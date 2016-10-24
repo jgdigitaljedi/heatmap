@@ -4,6 +4,7 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
     function ($scope, $http, $state, WebService) {
     	var vm = this;
     	$state.go('main');
+        vm.valProp = 'Site Incident Heat Severity Map (lv12)';
     	//the label definition is here to show that you can send whatever you like for labels
         /***************** 1st widget params ******************************/
         vm.axisLabels = {

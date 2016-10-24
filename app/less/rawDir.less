@@ -16,7 +16,7 @@
 
 		.row-label {
 			font-weight: bold;
-			width: 90px;
+			width: 100px;
 			padding-bottom: 0;
 			vertical-align: top;
 			padding-top: 6px;
@@ -38,6 +38,12 @@
 		text-align: center;
 	}
 
+	.hm-footer-spacer {
+		display: inline-block;
+		height: 25px;
+		width: 88px;
+	}
+
 	.hm-popup {
 		position: absolute;
 		z-index: 10;
@@ -52,4 +58,17 @@
 
 .gray-square {
 	background-color: #333 !important;
+}
+
+@media screen and (max-width: 884px) {
+	.hm-footer {
+		width: 3.3% !important;
+		font-size: .8em;
+		margin: 0;
+	}
+
+	.row-label {
+		font-size: .9em !important;
+		font-weight: normal !important;
+	}
 }

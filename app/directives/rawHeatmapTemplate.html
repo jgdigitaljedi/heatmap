@@ -14,6 +14,6 @@
 			</div>
 		</div>
 	</div>
-	<div style="width: 82px; height: 25px; display: inline-block;"></div>
-	<div class="hm-footer" ng-repeat="label in axisLabels.xAxis">{{label}}</div>
+	<div class="hm-footer-spacer" ng-style="{'width': xLabelWidth}"></div>
+	<div class="hm-footer" ng-repeat="label in axisLabels.xAxis track by $index" ng-style="$index % 4 !== 0 && skip && {'opacity': 0}">{{label}}</div>
 </div>
