@@ -23,6 +23,7 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
     function ($scope, $http, $state, WebService) {
     	var vm = this;
     	$state.go('main');
+        vm.valProp = 'Site Incident Heat Severity Map (lv12)';
     	//the label definition is here to show that you can send whatever you like for labels
         /***************** 1st widget params ******************************/
         vm.axisLabels = {
@@ -60,7 +61,8 @@ angular.module('heatMap').directive('rawHeatmap', [
 			transclude: true,
 			scope: {
 				hmData: '=',
-				axisLabels: '='
+				axisLabels: '=',
+				valueProp: '='
 			},
 			templateUrl: 'app/directives/rawHeatmapTemplate.html',
 			link: function (scope, elem, attrs) {
@@ -79,12 +81,20 @@ angular.module('heatMap').directive('rawHeatmap', [
 					return index;
 				}
 
+				if (window.innerWidth <= 884) {
+					scope.skip = true;
+					scope.xLabelWidth = '82px';
+				} else {
+					scope.skip = false;
+					scope.xLabelWidth = '88px';
+				}
+
 				function createHeatmap (data) {
 					var expectedLength = scope.axisLabels.xAxis.length,
 						durationArray = Array.apply(null, {length: expectedLength}).map(Number.call, Number);
 					if (data && data.length) {
 						data.forEach(function (item, index) {
-							var value = item.data['Site Incident Heat Severity Map (lv12)'][0].value;
+							var value = item.data[scope.valueProp][0].value;
 							if (!scope.hmDataSource.hasOwnProperty(item.index.dowId)) {
 								scope.hmDataSource[item.index.dowId] = {rowLabel: scope.axisLabels.yAxis[item.index.dowId - 1], data: []};
 							}
