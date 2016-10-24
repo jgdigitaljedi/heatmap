@@ -132,7 +132,8 @@ module.exports = function (grunt) {
 			production: {
 				files: {
 					'index.html': [
-						'dist/concatted.js'
+					'bower.json',
+						'dist/*.js'
 					]
 
 				},tasks: ['injector:css']
@@ -145,7 +146,7 @@ module.exports = function (grunt) {
 					mangle: true
 				},
 				files: {
-					'dist/<%= pkg.name %>-appbundle.js': 'min-safe/application.js'
+					'dist/application.js': 'min-safe/application.js'
 				}
 			}
 		},
@@ -162,23 +163,60 @@ module.exports = function (grunt) {
 	        options: {
 	            singleQuotes: true,
 	        },
-	        prod: {
-	        	files: []
+	        app: {
+	        	files: {
+	        		'min-safe/application.js': ['app/**/*.js', 'app/*.js']
+	        	}
 	        }
 	    },
 
-		// copy: {
-		// 	main: {
-		// 		files: [
-		// 			{
-		// 				expand: true,
-		// 				src: 'node_modules/font-awesome/fonts/*',
-		// 				dest: 'app/assets/fonts/',
-		// 				flatten: true
-		// 			}
-		// 		]
-		// 	}
-		// },
+	    ngtemplates: {
+			app: {
+				src: 'app/**/*.html',
+				dest: 'dist/templates.js',
+				options: {
+					module: 'heatMap',
+					root: 'app/',
+					standAlone: false
+				}
+			}
+		},
+
+	    concat: {
+			options: {
+				banner: '<%= banner %>',
+				stripBanners: false
+			},
+			build: {
+				src: [
+					// Angular Project Dependencies,
+					'bower_components/angular/angular.js',
+					'bower_components/**/*.js'
+
+				],
+				dest: 'dist/<%= pkg.name %>-angularbundle.js'
+			}
+		},
+
+		copy: {
+			main: {
+				files: [
+					{
+						expand: true,
+						cwd: 'bower_components/',
+						src: '*.min.js',
+						dest: 'dist/',
+						flatten: true
+					},
+					{
+						expand: true,
+						src: 'bower_components/release/*.min.js',
+						dest: 'dist/',
+						flatten: true
+					}
+				]
+			}
+		},
 
 		express: {
 			api: {
@@ -199,15 +237,19 @@ module.exports = function (grunt) {
 	// Register grunt tasks
 	grunt.registerTask("build", [
 		"jshint",
-		"copy",
+		// "copy",
 		"less",
-		"exec",
+		// "exec",
 		"ngAnnotate",
+		// "concat",
 		"uglify",
 		"cssmin",
 		"injector:production",
+		"injector:devCss",
+		"ngtemplates",
+		"express",
 		"concurrent",
-		"clean"
+		// "clean"
 	]);
 
 	// Development task(s).
