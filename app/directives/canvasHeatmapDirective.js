@@ -38,6 +38,7 @@ angular.module('heatMap').directive('canvasHeatmap', [
 					var expectedLength = scope.axisLabels.xAxis.length;
 					var c = elem[0];
 					var ctx = c.getContext('2d');
+					var toolTipCoords = {};
 
 					if (data && data.length) {
 						data.forEach(function (item, index) {
@@ -86,7 +87,7 @@ angular.module('heatMap').directive('canvasHeatmap', [
 							scope.hmDataSource[key].data = cleanedData;
 						}
 
-						var y;
+						var y, hotspots = [];
 						scope.axisLabels.yAxis.forEach(function (item, index) {
 							y = (index + 1) * 30;
 
@@ -102,34 +103,51 @@ angular.module('heatMap').directive('canvasHeatmap', [
 								ctx.rect(x, y - 25, 30, 30);
 								ctx.fillStyle = ite.color;
 								ctx.fill();
+								hotspots.push({x: x, y: y-25, w: 30, h: 30, tip: 'Value: ' + ite.value});
 								x += 30;
+								ctx.closePath();
 							});
 
 
 						});
 
+						ctx.strokeRect(10, y+5, 100, 33);
+						toolTipCoords.x = 10;
+						toolTipCoords.y = y+5;
+						toolTipCoords.width = 100;
+						toolTipCoords.height = 33;
+
+
 						var bottomX = 115;
 						scope.axisLabels.xAxis.forEach(function (item, index) {
-							// 7-axis labels
+							// y-axis labels
 							ctx.fillStyle = '#333';
 							ctx.font = '16px Arial';
 							ctx.fillText(item, bottomX, y+30, 30);
 							bottomX += 30;
 						});				
 					}
+
+					c.onmousemove = function (e) {
+						var rect = this.getBoundingClientRect(),
+						    mouseX = e.clientX - rect.left,
+						    mouseY = e.clientY - rect.top;
+
+				      	var hit = false;
+				      	for (var i = 0; i < hotspots.length; i++) {
+				      		if (mouseX >= hotspots[i].x && mouseX <= hotspots[i].x + 30 && mouseY >= hotspots[i].y && mouseY <= hotspots[i].y + 30) {
+				      			// console.log('this', hotspots[i].tip);
+				      			scope.hoverValue = hotspots[i].tip;
+				      			ctx.clearRect(toolTipCoords.x, toolTipCoords.y, toolTipCoords.width, toolTipCoords.height);
+				      			ctx.fillStyle = '#333';
+								ctx.font = 'bold 16px Arial';
+								ctx.fillText(hotspots[i].tip, toolTipCoords.x+10, toolTipCoords.y+20, 100);
+				      		}
+
+				      	}
+					    
+					};
 				}
-
-				// scope.showPopover = function (e, index) {
-				// 	scope.style = {
-				// 		'left': e.pageX - 40 + 'px',
-				// 		'top': e.pageY - 40 + 'px'
-				// 	};
-				// 	scope.showWhich = index.id;
-				// };
-
-				// scope.hidePopover = function (id) {
-				// 	scope.showWhich = null;
-				// };
 
 				scope.$watch('hmData', function () {
 					createHeatmap(scope.hmData);
