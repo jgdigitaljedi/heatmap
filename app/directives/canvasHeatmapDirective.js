@@ -133,17 +133,20 @@ angular.module('heatMap').directive('canvasHeatmap', [
 						    mouseX = e.clientX - rect.left,
 						    mouseY = e.clientY - rect.top;
 
-				      	var hit = false;
-				      	for (var i = 0; i < hotspots.length; i++) {
-				      		if (mouseX >= hotspots[i].x && mouseX <= hotspots[i].x + 30 && mouseY >= hotspots[i].y && mouseY <= hotspots[i].y + 30) {
-				      			// console.log('this', hotspots[i].tip);
-				      			scope.hoverValue = hotspots[i].tip;
-				      			ctx.clearRect(toolTipCoords.x, toolTipCoords.y, toolTipCoords.width, toolTipCoords.height);
-				      			ctx.fillStyle = '#333';
-								ctx.font = 'bold 16px Arial';
-								ctx.fillText(hotspots[i].tip, toolTipCoords.x+10, toolTipCoords.y+20, 100);
-				      		}
+				      	if (mouseX >= 110 && mouseX <= (scope.axisLabels.xAxis.length * 30 + 110) && mouseY >= 5 && mouseY <= (scope.axisLabels.yAxis.length * 30 + 5)) {
+					      	for (var i = 0; i < hotspots.length; i++) {
+					      		if (mouseX >= hotspots[i].x && mouseX <= hotspots[i].x + 30 && mouseY >= hotspots[i].y && mouseY <= hotspots[i].y + 30) {
+					      			// console.log('this', hotspots[i].tip);
+					      			scope.hoverValue = hotspots[i].tip;
+					      			ctx.clearRect(toolTipCoords.x, toolTipCoords.y, toolTipCoords.width, toolTipCoords.height);
+					      			ctx.fillStyle = '#333';
+									ctx.font = 'bold 16px Arial';
+									ctx.fillText(hotspots[i].tip, toolTipCoords.x+10, toolTipCoords.y+22, 100);
+					      		}
 
+					      	}				      		
+				      	} else {
+				      		ctx.clearRect(toolTipCoords.x, toolTipCoords.y, toolTipCoords.width, toolTipCoords.height);
 				      	}
 					    
 					};
