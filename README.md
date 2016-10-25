@@ -10,6 +10,7 @@ My thought process was to get the widget working with nothing but Angular first.
  - slider to show and hide squares of different severity
  - reasonably responsive (still needs some work)
  - simple to plugin to project (just a directive controller and template)
+ - canvas version (still rough around the edges, but created morning of 10/25/16)
 
 ### Tech
 
@@ -57,4 +58,3 @@ npm test
 
  - Write More Tests
  - Make more responsive
- - Make canvas version (thought prototyping as a view was a good idea until I started paying attention to responsiveness which didn't leave me much time)

@@ -86,12 +86,35 @@ angular.module('heatMap').directive('canvasHeatmap', [
 							scope.hmDataSource[key].data = cleanedData;
 						}
 
+						var y;
 						scope.axisLabels.yAxis.forEach(function (item, index) {
-							console.log('item', item);
-							var y = (index + 1) * 30;
+							y = (index + 1) * 30;
+
+							// x-axis labels
 							ctx.fillStyle = '#333';
 							ctx.font = 'bold 16px Arial';
 							ctx.fillText(item, 10, y, 100);
+
+							// row of colored squares
+							var x = 110;
+							scope.hmDataSource[index+1].data.forEach(function (ite, idx) {
+								ctx.beginPath();
+								ctx.rect(x, y - 25, 30, 30);
+								ctx.fillStyle = ite.color;
+								ctx.fill();
+								x += 30;
+							});
+
+
+						});
+
+						var bottomX = 115;
+						scope.axisLabels.xAxis.forEach(function (item, index) {
+							// 7-axis labels
+							ctx.fillStyle = '#333';
+							ctx.font = '16px Arial';
+							ctx.fillText(item, bottomX, y+30, 30);
+							bottomX += 30;
 						});				
 					}
 				}
