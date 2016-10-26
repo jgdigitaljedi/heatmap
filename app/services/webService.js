@@ -2,12 +2,72 @@
 
 angular.module('heatMap').factory('WebService', ['$http', '$q',
 	function ($http, $q) {
-		function getHeatmapData (random) {
+		var valProp = 'Site Incident Heat Severity Map (lv12)';
+
+		function formatDataForDirective (data, labels) {
+		    var def = $q.defer();
+		    if (data && data.length) {
+		        var result = {},
+		        	expectedLength = labels.xAxis.length,
+		            uniqueId = 0;
+		        data.forEach(function (item, index) {
+		            var value = item.data[valProp][0].value;
+		            if (!result.hasOwnProperty(item.index.dowId)) {
+		                result[item.index.dowId] = {rowLabel: labels.yAxis[item.index.dowId - 1], data: []};
+		            }
+		            // var cIndex = associateColor(value);
+		            result[item.index.dowId].data.push({
+		                hour: item.index.hourId,
+		                value: value,
+		                xLabel: labels.xAxis[item.index.hourId],
+		                // color: colorArr[cIndex],
+		                // colorIndex: cIndex
+		            });
+
+		        });
+		        for (var key in result) {
+		            var cleanedData = [],
+		                dataLen = result[key].data.length,
+		                counter = 0;
+		            result[key].data = result[key].data.sort(
+		                function (a, b) {
+		                    return a.hour - b.hour;
+		                }
+		            );
+		            // console.log('before cleaning', angular.copy(result));
+		            for (var i = 0; i < expectedLength; i++) {
+		                if (counter < dataLen && i === result[key].data[counter].hour) {
+		                    result[key].data[counter].id = uniqueId;
+		                    cleanedData.push(result[key].data[counter]);
+		                    uniqueId++;
+		                    counter++;
+		                } else {
+		                    cleanedData.push({
+		                        // color: colorArr[0],
+		                        hour: i,
+		                        value: 0,
+		                        xLabel: labels.xAxis[i],
+		                        colorIndex: 0,
+		                        id: uniqueId
+		                    });
+		                    uniqueId++;
+		                }
+		            }
+		            result[key].data = cleanedData;
+		        }
+		        def.resolve(result);
+		    } else {
+		        def.reject(false);
+		    }
+		    return def.promise;
+		}
+
+		function getHeatmapData (random, label) {
 			var def = $q.defer();
 			$http.get('http://localhost:3000/api/getheatmapdata/' + random)
 				.success(function (data, status, headers, config) {
 					if (!data.error && data.data && data.data.result) {
-						def.resolve(data.data.result);
+						def.resolve(formatDataForDirective(data.data.result, label));
 					} else {
 						def.resolve(data);
 					}
