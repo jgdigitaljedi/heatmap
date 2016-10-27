@@ -16,7 +16,8 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
             handleColor: '#311B92',
             trackColor: '#B0BEC5',
             sliderTitle: 'Severity',
-            blankColor: '#333'
+            blankColor: '#333',
+            handleShape: 'rectangle'
         };
         vm.konami = false;
 

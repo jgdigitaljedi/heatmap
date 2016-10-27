@@ -52,11 +52,19 @@ angular.module('heatMap').directive('rangeSlider', [
 
 				//handle
 				function makeHandle () {
-					ctx.beginPath();
-					ctx.rect(sliderTracker.x, sliderTracker.y, sliderTracker.w, sliderTracker.h);
-					ctx.fillStyle = $scope.options.handleColor;
-					ctx.fill();
-					ctx.closePath();					
+					if ($scope.options.handleShape === 'rectangle') {
+						ctx.beginPath();
+						ctx.rect(sliderTracker.x, sliderTracker.y, sliderTracker.w, sliderTracker.h);
+						ctx.fillStyle = $scope.options.handleColor;
+						ctx.fill();
+						ctx.closePath();						
+					} else {
+						ctx.beginPath();
+						ctx.arc(sliderTracker.x + 4, sliderTracker.y + 10, sliderTracker.w, 0, 2 * Math.PI, false);
+						ctx.fillStyle = $scope.options.handleColor;
+						ctx.fill();
+						ctx.closePath();						
+					}
 				}
 
 				// moves slider to closest tick
