@@ -115,7 +115,7 @@ angular.module('heatMap').directive('canvasHeatmap', [
 					    mouseX = e.clientX - rect.left,
 					    mouseY = e.clientY - rect.top;
 
-			      	if (mouseX >= 110 && mouseX <= (scope.axisLabels.xAxis.length * 30 + 110) && mouseY >= 5 && mouseY <= (scope.axisLabels.yAxis.length * 30 + 5)) {
+			      	if (mouseX >= 110 && mouseX <= (scope.axisLabels.xAxis.length * 30 + 110) && mouseY >= 5 && mouseY <= (scope.axisLabels.yAxis.length * 30 + 60)) {
 				      	for (var i = 0; i < hotspots.length; i++) {
 				      		if (mouseX >= hotspots[i].x && mouseX <= hotspots[i].x + 30 && mouseY >= hotspots[i].y && mouseY <= hotspots[i].y + 30) {
 				      			// console.log('this', hotspots[i].tip);
@@ -129,6 +129,7 @@ angular.module('heatMap').directive('canvasHeatmap', [
 				      	}				      		
 			      	} else {
 			      		ctx.clearRect(toolTipCoords.x, toolTipCoords.y, toolTipCoords.width, toolTipCoords.height);
+
 			      	}
 				    
 				};

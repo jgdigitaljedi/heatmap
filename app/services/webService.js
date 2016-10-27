@@ -31,7 +31,6 @@ angular.module('heatMap').factory('WebService', ['$http', '$q',
 		                    return a.hour - b.hour;
 		                }
 		            );
-		            // console.log('before cleaning', angular.copy(result));
 		            for (var i = 0; i < expectedLength; i++) {
 		                if (counter < dataLen && i === result[key].data[counter].hour) {
 		                    result[key].data[counter].id = uniqueId;
