@@ -20,7 +20,7 @@ angular.module('heatMap').directive('rangeSlider', [
 					h: 20
 				};
 				var ticksArr = [];
-				var totalWidth = $scope.options.width - 140;
+				var totalWidth = $scope.options.width - 130;
 				var isDrag = false;
 
 				// text label
@@ -61,7 +61,7 @@ angular.module('heatMap').directive('rangeSlider', [
 
 				// moves slider to closest tick
 				function snapTo (mouseX) {
-					var closestTick = {distance: 720, tick: null},
+					var closestTick = {distance: $scope.options.width - 130, tick: null},
 						i = 0;
 					ticksArr.forEach(function (item, index) {
 						var distance = Math.abs(mouseX - item);
