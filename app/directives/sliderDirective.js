@@ -6,8 +6,8 @@ angular.module('heatMap').directive('rangeSlider', [
 			restrict: 'AE',
 			transclude: true,
 			scope: {
-				minMax: '=',
-				severity: '='
+				severity: '=',
+				options: '='
 			},
 			controller: function ($scope, $element, $attrs) {
 
@@ -20,7 +20,7 @@ angular.module('heatMap').directive('rangeSlider', [
 					h: 20
 				};
 				var ticksArr = [];
-				var totalWidth = 720;
+				var totalWidth = $scope.options.width - 140;
 				var isDrag = false;
 
 				// text label
@@ -31,7 +31,7 @@ angular.module('heatMap').directive('rangeSlider', [
 				//track
 				function makeTrack () {
 					ctx.beginPath();
-					ctx.rect(110, 8, 720, 4);
+					ctx.rect(110, 8, $scope.options.width - 130, 4);
 					ctx.fillStyle = '#B0BEC5';
 					ctx.fill();
 					ctx.closePath();					
@@ -39,8 +39,8 @@ angular.module('heatMap').directive('rangeSlider', [
 
 				//ticks
 				function makeTicks () {
-					var spacing = totalWidth / ($scope.minMax.total - 1);
-					for (var i = 0; i < $scope.minMax.total; i++) {
+					var spacing = totalWidth / ($scope.options.increments - 1);
+					for (var i = 0; i < $scope.options.increments; i++) {
 						ctx.beginPath();
 						ctx.rect(i * spacing + 110, 2.5, 2, 15);
 						ctx.fillStyle = '#B0BEC5';

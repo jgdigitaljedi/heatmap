@@ -1,4 +1,5 @@
 'use strict()';
+/*jshint loopfunc: true */
 
 angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', 'WebService', '$q',
     function ($scope, $http, $state, WebService, $q) {
@@ -18,11 +19,12 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
         $scope.currentValue = 0;
         vm.options = {
             thresh: 680,
-            increments: 10
+            increments: 10,
+            width: 850
         };
 
 
-    	//the label definition is here to show that you can send whatever you like for labels
+        //the label definition is here to show that you can send whatever you like for labels
         /***************** 1st widget params ******************************/
         vm.axisLabels = {
             yAxis: ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'],
@@ -30,6 +32,7 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
         };
         WebService.getHeatmapData(false, vm.axisLabels, 'value').then(function (data) {
             if (!data.error) {
+                console.log('data', data);
                 vm.hmData = data;              
             } else {
                 // some error handling stuff here
@@ -48,5 +51,63 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
                 // some error handling stuff here
             }
         });
+
+        /****for the sake of brevity, I'm going to just randomly generate a data object for the last canvas element***/
+        vm.thirdColorArr = ['#D50000', '#C51162', '#4A148C', '#311B92','#1A237E', '#0D47A1', '#0091EA', '#00B8D4', '#00BFA5', '#1B5E20', '#33691E', '#827717'];
+        vm.crazyAxis = {
+            yAxis: ['Mario', 'Luigi', 'Peach', 'Toad', 'Yoshi', 'Bowser', 'Boo'],
+            xAxis: Array.apply(null, {length: 30}).map(Number.call, Number)
+        };
+
+        var cData = {
+            1: {
+                data: [],
+                rowLabel: 'Mario'
+            },
+            2: {
+                data: [],
+                rowLabel: 'Luigi'
+            },
+            3: {
+                data: [],
+                rowLabel: 'Peach'
+            },
+            4: {
+                data: [],
+                rowLabel: 'Toad)'
+            },
+            5: {
+                data: [],
+                rowLabel: 'Yoshi'
+            },
+            6: {
+                data: [],
+                rowLabel: 'Bowser'
+            },
+            7: {
+                data: [],
+                rowLabel: 'Boo'
+            },
+        };
+
+        // vm.crazyData = Array.apply(null, new Array(vm.crazyAxis.yAxis.length)).map(function (item, index) {
+        for (var key in cData) {
+            cData[key].data =   Array.apply(null, new Array(30)).map(function (item, index) {
+                                    return {
+                                        hour: index,
+                                        value: Math.floor(Math.random() * 1000),
+                                        xLabel: vm.crazyAxis.xAxis[index]
+                                    };
+                                });
+        }
+        vm.crazyData = cData;
+            
+        // });
+        vm.crazyOptions = {
+            thresh: 920,
+            increments: 12,
+            width: 1050
+        };
+        $scope.crazyValue = 0;
     }
 ]);

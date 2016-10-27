@@ -28,9 +28,24 @@
 			<p>This is a canvas implementation.</p>
 			<p style="font-style: italic;">(clicking on slider works, dragging the handle is still under development)</p>
 			<div class="canvas-hm" layout="row" layout-align="center start" flex>
-				<canvas range-slider width="850" height="20" style="padding-top: 14px; position: absolute;" min-max="vm.minMax" severity="currentValue"></canvas>
+				<canvas range-slider width="850" height="20" style="padding-top: 14px; position: absolute;" min-max="vm.minMax" severity="currentValue"
+					options="vm.options">
+				</canvas>
 				<canvas style="padding-top: 14px;" canvas-heatmap color-arr="vm.colorArr" axis-labels="vm.axisLabels" severity="currentValue" hm-data="vm.hmData" 
 					width="850" height="285" options="vm.options">
+				</canvas>
+			</div>
+		</div>
+	</div>
+	<div layout="row" layout-align="center center">
+		<div layout="column" layout-align="center center">
+			<p>This is another canvas implementation with different colors, threshold, and number of data points.</p>
+			<div class="canvas-hm" layout="row" layout-align="center start" flex>
+				<canvas range-slider width="1050" height="20" style="padding-top: 14px; position: absolute;" min-max="vm.minMax" severity="crazyValue"
+					options="vm.crazyOptions">
+				</canvas>
+				<canvas style="padding-top: 14px;" canvas-heatmap color-arr="vm.thirdColorArr" axis-labels="vm.crazyAxis" severity="crazyValue" hm-data="vm.crazyData" 
+					width="1050" height="285" options="vm.crazyOptions">
 				</canvas>
 			</div>
 		</div>
