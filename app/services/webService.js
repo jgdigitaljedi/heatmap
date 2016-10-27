@@ -15,13 +15,10 @@ angular.module('heatMap').factory('WebService', ['$http', '$q',
 		            if (!result.hasOwnProperty(item.index.dowId)) {
 		                result[item.index.dowId] = {rowLabel: labels.yAxis[item.index.dowId - 1], data: []};
 		            }
-		            // var cIndex = associateColor(value);
 		            result[item.index.dowId].data.push({
 		                hour: item.index.hourId,
 		                value: value,
-		                xLabel: labels.xAxis[item.index.hourId],
-		                // color: colorArr[cIndex],
-		                // colorIndex: cIndex
+		                xLabel: labels.xAxis[item.index.hourId]
 		            });
 
 		        });
@@ -43,7 +40,6 @@ angular.module('heatMap').factory('WebService', ['$http', '$q',
 		                    counter++;
 		                } else {
 		                    cleanedData.push({
-		                        // color: colorArr[0],
 		                        hour: i,
 		                        value: 0,
 		                        xLabel: labels.xAxis[i],
