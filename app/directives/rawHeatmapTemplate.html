@@ -1,7 +1,7 @@
 <div class="hm-container">
 	<md-slider-container>
 		Severity &nbsp;
-		<md-slider ng-model="severity" min="0" max="9" md-discrete></md-slider>
+		<md-slider ng-model="severity" min="0" max="9" md-discrete aria-label="Severity Slider"></md-slider>
 	</md-slider-container>
 	<div ng-repeat="(key, value) in hmDataSource" class="hm-row">
 		<div class="row-label">{{value.rowLabel}}</div>

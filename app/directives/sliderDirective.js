@@ -85,7 +85,6 @@ angular.module('heatMap').directive('rangeSlider', [
 					    mouseY = e.clientY - rect.top;
 
 			      	if (mouseX >= sliderTracker.x && mouseX <= (sliderTracker.x + sliderTracker.w)) {
-			      		console.log('clicked on slider');
 			      		isDrag = true;
 			      	} else {
 			      		ctx.clearRect(sliderTracker.x - 20, sliderTracker.y, sliderTracker.w + 50, sliderTracker.h);
@@ -93,7 +92,6 @@ angular.module('heatMap').directive('rangeSlider', [
 			      		makeTrack();
 			      		makeTicks();
 			      		makeHandle();
-			      		// snapTo(mouseX);
 			      	}
 				};
 
@@ -109,9 +107,7 @@ angular.module('heatMap').directive('rangeSlider', [
 
 				c.onmousemove = function (e) {
 					if (isDrag) {
-						console.log('dragging');
 					    ctx.clearRect(sliderTracker.x - 20, sliderTracker.y, sliderTracker.w + 100, sliderTracker.h);
-						console.log('dragging');
 						var rect = this.getBoundingClientRect(),
 					    mouseX = e.clientX - rect.left;
 					    sliderTracker.x = mouseX;

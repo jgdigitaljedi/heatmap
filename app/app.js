@@ -19,7 +19,7 @@ angular.module('heatMap',
 })
 .run(['$window', '$rootScope',
     function ($window, $rootScope) {
-        console.log('konami listening');
+        console.log('listening for Konami code');
         // konami code
         var neededkeys = [38,38,40,40,37,39,37,39,66,65],
             started = false,
@@ -32,7 +32,6 @@ angular.module('heatMap',
         }
         var bodyElement = angular.element($window);
         bodyElement.bind('keydown', function (e) {
-        console.log('konami listening');
             var key = e.keyCode;
             //Set start to true only if having pressed the first key in the konami sequence.
             if (!started){

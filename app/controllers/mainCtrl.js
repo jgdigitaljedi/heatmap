@@ -28,7 +28,6 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
         };
         WebService.getHeatmapData(false, vm.axisLabels, 'value').then(function (data) {
             if (!data.error) {
-                console.log('data', data);
                 vm.hmData = data;              
             } else {
                 // some error handling stuff here
