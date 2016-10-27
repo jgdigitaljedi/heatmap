@@ -1,8 +1,8 @@
 'use strict()';
 /*jshint loopfunc: true */
 
-angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', 'WebService', '$q',
-    function ($scope, $http, $state, WebService, $q) {
+angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', 'WebService', '$q', '$rootScope',
+    function ($scope, $http, $state, WebService, $q, $rootScope) {
     	var vm = this;
     	$state.go('main');
         vm.valProp = 'Site Incident Heat Severity Map (lv12)';
@@ -22,6 +22,7 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
             increments: 10,
             width: 850
         };
+        vm.konami = false;
 
 
         //the label definition is here to show that you can send whatever you like for labels
@@ -90,7 +91,6 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
             },
         };
 
-        // vm.crazyData = Array.apply(null, new Array(vm.crazyAxis.yAxis.length)).map(function (item, index) {
         for (var key in cData) {
             cData[key].data =   Array.apply(null, new Array(30)).map(function (item, index) {
                                     return {
@@ -109,5 +109,12 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
             width: 1050
         };
         $scope.crazyValue = 0;
+
+        // I can't help myself
+        $rootScope.$on('konami', function () {
+            $scope.$apply(function () {
+                vm.konami = true;
+            });
+        });
     }
 ]);
