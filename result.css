@@ -6,6 +6,9 @@
     opacity: 1;
   }
 }
+.fade-in {
+  animation: fade-in 4s;
+}
 .hm-container {
   background-color: #f1f1f1;
   padding: 16px;

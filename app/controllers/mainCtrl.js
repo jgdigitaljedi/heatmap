@@ -1,26 +1,18 @@
 'use strict()';
 /*jshint loopfunc: true */
 
-angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', 'WebService', '$q', '$rootScope',
-    function ($scope, $http, $state, WebService, $q, $rootScope) {
+angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', 'WebService', '$q', '$rootScope', '$timeout',
+    function ($scope, $http, $state, WebService, $q, $rootScope, $timeout) {
     	var vm = this;
     	$state.go('main');
-        vm.valProp = 'Site Incident Heat Severity Map (lv12)';
         vm.colorArr = ['#01579B', '#006064', '#004D40', '#1B5E20', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#B71C1C'];
         vm.altColorArr = ['#26C6DA', '#26A69A', '#66BB6A', '#9CCC65', '#D4E157', '#FFEE58', '#FFCA28', '#FFA726','#FF7043', '#EF5350'];
         $scope.severity = 0;
-        vm.minMax = {
-            min: 0,
-            max: 9,
-            step: 1,
-            total: 10
-        };
-
         $scope.currentValue = 0;
         vm.options = {
             thresh: 680,
             increments: 10,
-            width: 850
+            width: 848
         };
         vm.konami = false;
 
@@ -101,12 +93,10 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
                                 });
         }
         vm.crazyData = cData;
-            
-        // });
         vm.crazyOptions = {
             thresh: 920,
             increments: 12,
-            width: 1050
+            width: 1028
         };
         $scope.crazyValue = 0;
 
@@ -114,6 +104,9 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
         $rootScope.$on('konami', function () {
             $scope.$apply(function () {
                 vm.konami = true;
+                $timeout(function () {
+                    window.scrollTo(0, window.innerHeight);
+                }, 300);
             });
         });
     }
