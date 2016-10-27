@@ -88,11 +88,11 @@ angular.module('heatMap').directive('rangeSlider', [
 			      		console.log('clicked on slider');
 			      		isDrag = true;
 			      	} else {
-			      		ctx.clearRect(sliderTracker.x, sliderTracker.y, sliderTracker.w, sliderTracker.h);
+			      		ctx.clearRect(sliderTracker.x - 20, sliderTracker.y, sliderTracker.w + 50, sliderTracker.h);
 			      		sliderTracker.x = mouseX;
 			      		makeTrack();
 			      		makeTicks();
-			      		snapTo(mouseX);
+			      		// snapTo(mouseX);
 			      	}
 				};
 
@@ -106,14 +106,15 @@ angular.module('heatMap').directive('rangeSlider', [
 				c.onmousemove = function (e) {
 					if (isDrag) {
 						console.log('dragging');
-					    ctx.clearRect(sliderTracker.x - 10, sliderTracker.y, sliderTracker.w + 10, sliderTracker.h);
+					    ctx.clearRect(sliderTracker.x - 20, sliderTracker.y, sliderTracker.w + 100, sliderTracker.h);
 						console.log('dragging');
 						var rect = this.getBoundingClientRect(),
 					    mouseX = e.clientX - rect.left;
+					    sliderTracker.x = mouseX;
 
 					    makeTrack();
 					    makeTicks();
-						// makeHandle();
+						makeHandle();
 					}
 				};
 
