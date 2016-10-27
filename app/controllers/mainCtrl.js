@@ -7,6 +7,14 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
         vm.valProp = 'Site Incident Heat Severity Map (lv12)';
         vm.colorArr = ['#01579B', '#006064', '#004D40', '#1B5E20', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#B71C1C'];
         $scope.severity = 0;
+        vm.minMax = {
+            min: 0,
+            max: 9,
+            step: 1,
+            total: 10
+        };
+
+        $scope.currentValue = 0;
 
 
     	//the label definition is here to show that you can send whatever you like for labels
