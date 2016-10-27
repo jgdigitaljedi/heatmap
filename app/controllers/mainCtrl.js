@@ -15,6 +15,9 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
         };
 
         $scope.currentValue = 0;
+        vm.options = {
+            thresh: 680
+        };
 
 
     	//the label definition is here to show that you can send whatever you like for labels

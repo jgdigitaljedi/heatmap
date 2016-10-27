@@ -9,7 +9,7 @@ angular.module('heatMap').directive('canvasHeatmap', [
 			scope: {
 				hmData: '=',
 				axisLabels: '=',
-				valueProp: '=',
+				options: '=',
 				severity: '=severity',
 				colorArr: '='
 			},
@@ -23,14 +23,14 @@ angular.module('heatMap').directive('canvasHeatmap', [
 				var ctx = c.getContext('2d');
 				var toolTipCoords = {};
 				var y, hotspots = [];
-				
+				var divisor = scope.options.thresh / 10;
 
 				function associateColor (value) {
 					var index;
-					if (value >= 680) {
+					if (value >= scope.options.thresh) {
 						index = 9;
 					} else {
-						index = parseInt(value / 68);
+						index = parseInt(value / divisor);
 					}
 					return index;
 				}
@@ -43,16 +43,18 @@ angular.module('heatMap').directive('canvasHeatmap', [
 					scope.xLabelWidth = '88px';
 				}
 
-				function buildColorSquares () {
+				function buildColorSquares (refresh) {
 					if (scope.hmDataSource) {
 						ctx.clearRect(110, 60, scope.axisLabels.xAxis.length * 30, scope.axisLabels.yAxis * 30);
 						scope.axisLabels.yAxis.forEach(function (item, index) {
 							y = (index + 1) * 30 + 30;
 
 							// y-axis labels
-							ctx.fillStyle = '#333';
-							ctx.font = 'bold 16px Arial';
-							ctx.fillText(item, 10, y, 100);
+							if (!refresh) {
+								ctx.fillStyle = '#333';
+								ctx.font = 'bold 16px Arial';
+								ctx.fillText(item, 10, y, 100);								
+							}
 
 							// row of colored squares
 							var x = 110;
@@ -118,7 +120,6 @@ angular.module('heatMap').directive('canvasHeatmap', [
 			      	if (mouseX >= 110 && mouseX <= (scope.axisLabels.xAxis.length * 30 + 110) && mouseY >= 5 && mouseY <= (scope.axisLabels.yAxis.length * 30 + 60)) {
 				      	for (var i = 0; i < hotspots.length; i++) {
 				      		if (mouseX >= hotspots[i].x && mouseX <= hotspots[i].x + 30 && mouseY >= hotspots[i].y && mouseY <= hotspots[i].y + 30) {
-				      			// console.log('this', hotspots[i].tip);
 				      			scope.hoverValue = hotspots[i].tip;
 				      			ctx.clearRect(toolTipCoords.x, toolTipCoords.y, toolTipCoords.width, toolTipCoords.height);
 				      			ctx.fillStyle = '#333';
@@ -139,7 +140,7 @@ angular.module('heatMap').directive('canvasHeatmap', [
 				});
 
 				scope.$watch('severity', function () {
-					buildColorSquares();
+					buildColorSquares(true);
 				});
 			}
 		};

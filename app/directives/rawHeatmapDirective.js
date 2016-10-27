@@ -9,20 +9,22 @@ angular.module('heatMap').directive('rawHeatmap', [
 			scope: {
 				hmData: '=',
 				axisLabels: '=',
-				colorArr: '='
+				colorArr: '=',
+				options: '='
 			},
 			templateUrl: 'app/directives/rawHeatmapTemplate.html',
 			link: function (scope, elem, attrs) {
 				scope.severity = 0;
 				scope.hmDataSource = {};
 				if (!scope.colorArr) scope.colorArr = ['#01579B', '#006064', '#004D40', '#1B5E20', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#B71C1C'];
+				var divisor = scope.options.thresh / 10;
 
 				function associateColor (value) {
 					var index;
-					if (value >= 680) {
+					if (value >= scope.options.thresh) {
 						index = 9;
 					} else {
-						index = parseInt(value / 68);
+						index = parseInt(value / divisor);
 					}
 					return index;
 				}

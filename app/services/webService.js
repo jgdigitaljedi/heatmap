@@ -61,6 +61,7 @@ angular.module('heatMap').factory('WebService', ['$http', '$q',
 			var def = $q.defer();
 			$http.get('http://localhost:3000/api/getheatmapdata/' + random)
 				.success(function (data, status, headers, config) {
+					console.log('ws', data);
 					if (!data.error && data.data && data.data.result) {
 						def.resolve(formatDataForDirective(data.data.result, label));
 					} else {
