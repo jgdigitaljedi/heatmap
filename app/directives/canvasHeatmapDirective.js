@@ -60,7 +60,7 @@ angular.module('heatMap').directive('canvasHeatmap', [
 							var x = 110;
 							if (scope.hmDataSource[index+1]) {
 								scope.hmDataSource[index+1].data.forEach(function (ite, idx) {
-									var fillColor = ite.colorIndex >= scope.severity ? ite.color : '#333';
+									var fillColor = ite.colorIndex >= scope.severity ? ite.color : scope.options.blankColor;
 									ctx.beginPath();
 									ctx.rect(x, y - 25, 30, 30);
 									ctx.fillStyle = fillColor;

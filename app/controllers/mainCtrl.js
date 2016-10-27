@@ -15,7 +15,8 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
             width: 848,
             handleColor: '#311B92',
             trackColor: '#B0BEC5',
-            sliderTitle: 'Severity'
+            sliderTitle: 'Severity',
+            blankColor: '#333'
         };
         vm.konami = false;
 
@@ -101,7 +102,8 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
             width: 1028,
             handleColor: '#F57F17',
             trackColor: '#BCAAA4',
-            sliderTitle: 'Stuff'
+            sliderTitle: 'Stuff',
+            blankColor: '#f1f1f1'
         };
         $scope.crazyValue = 0;
 
