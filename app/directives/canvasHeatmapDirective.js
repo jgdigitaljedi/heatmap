@@ -1,4 +1,5 @@
 'use strict()';
+/*jshint loopfunc: true */
 
 angular.module('heatMap').directive('canvasHeatmap', [
 	function () {
@@ -22,7 +23,7 @@ angular.module('heatMap').directive('canvasHeatmap', [
 				var ctx = c.getContext('2d');
 				var toolTipCoords = {};
 				var y, hotspots = [];
-				var bottomX = 115;
+				
 
 				function associateColor (value) {
 					var index;
@@ -48,7 +49,7 @@ angular.module('heatMap').directive('canvasHeatmap', [
 						scope.axisLabels.yAxis.forEach(function (item, index) {
 							y = (index + 1) * 30 + 30;
 
-							// x-axis labels
+							// y-axis labels
 							ctx.fillStyle = '#333';
 							ctx.font = 'bold 16px Arial';
 							ctx.fillText(item, 10, y, 100);
@@ -82,8 +83,9 @@ angular.module('heatMap').directive('canvasHeatmap', [
 				}
 
 				function buildXAxisLabels () {
+					var bottomX = 115;
 					scope.axisLabels.xAxis.forEach(function (item, index) {
-						// y-axis labels
+						// x-axis labels
 						ctx.fillStyle = '#333';
 						ctx.font = '16px Arial';
 						ctx.fillText(item, bottomX, y+30, 30);

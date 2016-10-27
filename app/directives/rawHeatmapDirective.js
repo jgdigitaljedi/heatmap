@@ -1,4 +1,5 @@
 'use strict()';
+/*jshint loopfunc: true */
 
 angular.module('heatMap').directive('rawHeatmap', [
 	function () {
