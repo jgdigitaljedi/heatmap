@@ -23,7 +23,7 @@ angular.module('heatMap').directive('canvasHeatmap', [
 				var ctx = c.getContext('2d');
 				var toolTipCoords = {};
 				var y, hotspots = [];
-				var divisor = scope.options.thresh / 10;
+				var divisor = scope.options.thresh / scope.options.increments;
 
 				function associateColor (value) {
 					var index;

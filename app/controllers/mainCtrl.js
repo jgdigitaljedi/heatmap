@@ -6,7 +6,7 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
     	$state.go('main');
         vm.valProp = 'Site Incident Heat Severity Map (lv12)';
         vm.colorArr = ['#01579B', '#006064', '#004D40', '#1B5E20', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#B71C1C'];
-        vm.altColorArr = ['#26C6DA', '#26A69A', '#66BB6A', '#9CCC65', '#D4E157', '#FFEE58', '#FFCA28', '#FFA726','#FF7043', '#EF5350']
+        vm.altColorArr = ['#26C6DA', '#26A69A', '#66BB6A', '#9CCC65', '#D4E157', '#FFEE58', '#FFCA28', '#FFA726','#FF7043', '#EF5350'];
         $scope.severity = 0;
         vm.minMax = {
             min: 0,
@@ -17,7 +17,8 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
 
         $scope.currentValue = 0;
         vm.options = {
-            thresh: 680
+            thresh: 680,
+            increments: 10
         };
 
 

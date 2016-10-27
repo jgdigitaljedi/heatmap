@@ -17,7 +17,7 @@ angular.module('heatMap').directive('rawHeatmap', [
 				scope.severity = 0;
 				scope.hmDataSource = {};
 				if (!scope.colorArr) scope.colorArr = ['#01579B', '#006064', '#004D40', '#1B5E20', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#B71C1C'];
-				var divisor = scope.options.thresh / 10;
+				var divisor = scope.options.thresh / scope.options.increments;
 
 				function associateColor (value) {
 					var index;
