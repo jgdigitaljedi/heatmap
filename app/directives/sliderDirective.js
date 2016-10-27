@@ -26,13 +26,13 @@ angular.module('heatMap').directive('rangeSlider', [
 				// text label
 				ctx.fillStyle = '#333';
 				ctx.font = '16px Arial';
-				ctx.fillText('Severity', 10, 16, 100);
+				ctx.fillText($scope.options.sliderTitle, 10, 16, 100);
 
 				//track
 				function makeTrack () {
 					ctx.beginPath();
 					ctx.rect(110, 8, $scope.options.width - 130, 4);
-					ctx.fillStyle = '#B0BEC5';
+					ctx.fillStyle = $scope.options.trackColor;
 					ctx.fill();
 					ctx.closePath();					
 				}
@@ -43,7 +43,7 @@ angular.module('heatMap').directive('rangeSlider', [
 					for (var i = 0; i < $scope.options.increments; i++) {
 						ctx.beginPath();
 						ctx.rect(i * spacing + 110, 2.5, 2, 15);
-						ctx.fillStyle = '#B0BEC5';
+						ctx.fillStyle = $scope.options.trackColor;
 						ctx.fill();
 						ctx.closePath();
 						ticksArr.push(i * spacing + 110);
@@ -54,7 +54,7 @@ angular.module('heatMap').directive('rangeSlider', [
 				function makeHandle () {
 					ctx.beginPath();
 					ctx.rect(sliderTracker.x, sliderTracker.y, sliderTracker.w, sliderTracker.h);
-					ctx.fillStyle = '#311B92';
+					ctx.fillStyle = $scope.options.handleColor;
 					ctx.fill();
 					ctx.closePath();					
 				}

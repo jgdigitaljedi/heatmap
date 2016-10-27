@@ -12,7 +12,10 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
         vm.options = {
             thresh: 680,
             increments: 10,
-            width: 848
+            width: 848,
+            handleColor: '#311B92',
+            trackColor: '#B0BEC5',
+            sliderTitle: 'Severity'
         };
         vm.konami = false;
 
@@ -96,7 +99,10 @@ angular.module('heatMap').controller('MainCtrl', ['$scope', '$http', '$state', '
         vm.crazyOptions = {
             thresh: 920,
             increments: 12,
-            width: 1028
+            width: 1028,
+            handleColor: '#F57F17',
+            trackColor: '#BCAAA4',
+            sliderTitle: 'Stuff'
         };
         $scope.crazyValue = 0;
 
