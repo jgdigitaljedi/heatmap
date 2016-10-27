@@ -2,7 +2,7 @@
 
 This is a little heatmap visualization I put together for Angular. This project has a server.js for the sake of demonstrating it by getting a data set from a data call and uses Mocha and supertest to test the endpoint.
 
-My thought process was to get the widget working with nothing but Angular first. Then I thought I could add the slider functionality with a framework just to have the functionality, add a pop-up to the heatmap squares on hover to show the actual value, get the build process working, then circle back and create my own slider widget and create a canvas version if I had the time (not likely due to app launch at work and being on call and on edge 24/7).
+My thought process was to get the widget working with nothing but Angular first. Then I thought I could add the slider functionality with a framework just to have the functionality, add a pop-up to the heatmap squares on hover to show the actual value, get the build process working, then circle back and create my own slider widget and create a canvas version if I had the time. The canvas slider directive is still being worked on, the the bulk of the functionality is there in it now. It's just a little rough around the edges.
 
 ### Features
  - material design
@@ -11,6 +11,7 @@ My thought process was to get the widget working with nothing but Angular first.
  - reasonably responsive (still needs some work)
  - simple to plugin to project (just a directive controller and template)
  - canvas version (still rough around the edges, but created morning of 10/25/16)
+ - Easter egg in demo (because why not)
 
 ### Tech
 
@@ -58,3 +59,4 @@ npm test
 
  - Write More Tests
  - Make more responsive
+ - Make canvas slider animate better and clean it up
