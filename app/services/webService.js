@@ -4,14 +4,14 @@ angular.module('heatMap').factory('WebService', ['$http', '$q',
 	function ($http, $q) {
 		var valProp = 'Site Incident Heat Severity Map (lv12)';
 
-		function formatDataForDirective (data, labels) {
+		function formatDataForDirective (data, labels, which) {
 		    var def = $q.defer();
 		    if (data && data.length) {
 		        var result = {},
 		        	expectedLength = labels.xAxis.length,
 		            uniqueId = 0;
 		        data.forEach(function (item, index) {
-		            var value = item.data[valProp][0].value;
+		            var value = item.data[valProp][0][which];
 		            if (!result.hasOwnProperty(item.index.dowId)) {
 		                result[item.index.dowId] = {rowLabel: labels.yAxis[item.index.dowId - 1], data: []};
 		            }
@@ -57,13 +57,13 @@ angular.module('heatMap').factory('WebService', ['$http', '$q',
 		    return def.promise;
 		}
 
-		function getHeatmapData (random, label) {
+		function getHeatmapData (random, label, which) {
 			var def = $q.defer();
 			$http.get('http://localhost:3000/api/getheatmapdata/' + random)
 				.success(function (data, status, headers, config) {
 					console.log('ws', data);
 					if (!data.error && data.data && data.data.result) {
-						def.resolve(formatDataForDirective(data.data.result, label));
+						def.resolve(formatDataForDirective(data.data.result, label, which));
 					} else {
 						def.resolve(data);
 					}

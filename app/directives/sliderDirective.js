@@ -92,6 +92,7 @@ angular.module('heatMap').directive('rangeSlider', [
 			      		sliderTracker.x = mouseX;
 			      		makeTrack();
 			      		makeTicks();
+			      		makeHandle();
 			      		// snapTo(mouseX);
 			      	}
 				};
@@ -99,7 +100,10 @@ angular.module('heatMap').directive('rangeSlider', [
 				c.onmouseup = function (e) {
 					var rect = this.getBoundingClientRect(),
 					    mouseX = e.clientX - rect.left;
+				    ctx.clearRect(sliderTracker.x - 20, sliderTracker.y, sliderTracker.w + 100, sliderTracker.h);
 					isDrag = false;
+					makeTrack();
+					makeTicks();
 					snapTo(mouseX);
 				};
 
