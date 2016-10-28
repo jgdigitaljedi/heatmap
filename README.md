@@ -11,7 +11,7 @@ My thought process was to get the widget working with nothing but Angular first.
  - reasonably responsive (still needs some work)
  - simple to plugin to project (just a directive controller and template)
  - canvas version (still rough around the edges, but created morning of 10/25/16)
- - Easter egg in demo (because why not)
+ - Easter egg in demo (because why not...it's a skills demo so I'm just demoing some additional skills)
 
 ### Tech
 
